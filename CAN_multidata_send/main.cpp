@@ -39,6 +39,9 @@ const int CAN_RX_PIN = 26;  // 受信ピン（GPIO26）
 void loop() {
 
   int PS4_Circle=0;
+  int PS4_Triangle=0;
+  int PS4_R1=0;
+  int PS4_L1=0;
   
   //Serial.println("Start");
   // 受信処理を実行
@@ -50,13 +53,26 @@ void loop() {
       PS4_Circle=1;
       Serial.printf("%d\n", PS4_Circle); 
     }
-    //if (PS4.Triangle()) Serial.println("Triangle Button");
+    if (PS4.Triangle()) {
+      Serial.println("Triangle Button");
+      PS4_Triangle=1;
+      Serial.printf("%d\n", PS4_Triangle);
+      };
+    if (PS4.R1()){
+      Serial.println("R1 Button");
+      PS4_R1=1;
+      Serial.printf("%d\n", PS4_R1);
+      };
+     if (PS4.L1()){
+      Serial.println("L1 Button");
+      PS4_L1=1;
+      Serial.printf("%d\n", PS4_L1);
+      };
   }
 
-    Serial.printf("%d\n", PS4_Circle); 
-
   // 送信処理を実行
-  sendPacket(PS4_Circle);
+  //sendPacket(PS4_Circle);
+  sendPacket(PS4_Circle, PS4_Triangle, PS4_R1, PS4_L1);
 
   //delay(1000);  // 1秒の遅延
 }
