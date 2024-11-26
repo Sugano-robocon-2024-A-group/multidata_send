@@ -9,7 +9,8 @@
 void setup() {
   
   Serial.begin(115200);  // シリアル通信開始
-    while (!Serial);  // シリアル接続待機
+  Serial.println("Start");
+  while (!Serial);  // シリアル接続待機
 
  const int CAN_TX_PIN = 27;  // 送信ピン（GPIO27）
 const int CAN_RX_PIN = 26;  // 受信ピン（GPIO26）
@@ -53,20 +54,23 @@ receivePacket(id, data, length);
   Serial.println(length);  // 10進数で表示
 
   // CANメッセージを受信
-    for (int i = 0; i < length; i++) {
+  /*  for (int i = 0; i < length; i++) {
       Serial.print(data[i]);//⇒こっちで255って出てる
       Serial.print("A");
     }
-    Serial.println();
+    Serial.println();*/
 
     Serial.print(data[0]);
+     Serial.print(data[1]);
+      Serial.print(data[2]);
+       Serial.print(data[3]);
 
     if(data[0]==0){
       //これでHIGHにする
       
       }
 
- delay(1000);  // 1秒の遅延
+ //delay(1000);  // 1秒の遅延
 }
 
 /*
