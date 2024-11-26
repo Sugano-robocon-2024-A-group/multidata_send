@@ -22,11 +22,11 @@ void sendPacket(int PS4_Circle, int PS4_Triangle, int PS4_R1, int PS4_L1) {
   CAN.beginPacket(0x12);
   Serial.print("Sending");
   CAN.write(static_cast<uint8_t>(PS4_Circle));
-  //Serial.print("Sending 1 ");
+  Serial.print("Sending 2");
   CAN.write(static_cast<uint8_t>(PS4_Triangle));
-  //Serial.print("Sending 1 ");
+  Serial.print("Sending 3 ");
   CAN.write(static_cast<uint8_t>(PS4_R1));
-  //Serial.print("Sending 1 ");
+  Serial.print("Sending 4 ");
   CAN.write(static_cast<uint8_t>(PS4_L1));
   CAN.endPacket();  // 送信終了
   
