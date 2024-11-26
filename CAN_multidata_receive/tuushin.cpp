@@ -69,14 +69,14 @@ void receivePacket(uint32_t &id, uint16_t *data, uint16_t &length) {
 
       // データをシリアルに表示
       while (CAN.available()) {
-        Serial.print((uint16_t)CAN.read());//⇒こいつで100って出てる。
+     //   Serial.print((uint16_t)CAN.read());//⇒こいつで100って出てる。
 
         
 
     id = CAN.packetId();        // CAN IDを取得
     length = CAN.packetDlc();   // データ長を取得
 
-    // データを配列に格納
+    // データを配列に格納 前にやることで不具合解決
  /*   for (int i = 0; i < length; i++) {
       //data[i] = (int)CAN.read();uint16_t
       //data[i] = (uint16_t)CAN.read();
@@ -84,10 +84,10 @@ void receivePacket(uint32_t &id, uint16_t *data, uint16_t &length) {
   data[i] = static_cast<uint16_t>(byte);  
     }*/
 
-       for (int i = 0; i < length; i++) {
+      /* for (int i = 0; i < length; i++) {
       Serial.print(data[i]);//⇒この時点で最大のものになる。
       Serial.print("A");
-    }
+    }*/
     Serial.println();
     
 
