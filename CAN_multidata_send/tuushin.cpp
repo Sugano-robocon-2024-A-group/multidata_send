@@ -29,6 +29,8 @@ void sendPacket(int PS4_Circle, int PS4_Triangle, int PS4_R1, int PS4_L1) {
   Serial.print("Sending 4 ");
   CAN.write(static_cast<uint8_t>(PS4_L1));
   CAN.endPacket();  // 送信終了
+
+  Serial.print(PS4_Circle);
   
   Serial.println("done");
 
@@ -40,6 +42,7 @@ void receivePacket() {
   int packetSize = CAN.parsePacket();  // 受信したパケットのサイズを取得
 
   if (packetSize) {  // パケットが受信された場合
+  
     Serial.print("Received ");
 
     // 拡張パケットの場合

@@ -40,8 +40,9 @@ void receivePacket(uint32_t &id, uint16_t *data, uint16_t &length) {
     for (int i = 0; i < length; i++) {
       //data[i] = (int)CAN.read();uint16_t
       //data[i] = (uint16_t)CAN.read();
- uint8_t byte = CAN.read();  // 1 バイト読み取る
-  data[i] = static_cast<uint16_t>(byte);  
+ /*uint8_t byte = CAN.read();  // 1 バイト読み取る
+  data[i] = static_cast<uint16_t>(byte);  */
+  data[i] = CAN.read();  // 1バイトずつデータをそのまま格納
     }
 
     /*// 拡張パケットの場合
@@ -96,5 +97,8 @@ void receivePacket(uint32_t &id, uint16_t *data, uint16_t &length) {
       Serial.println();
     }
     Serial.println();
+  }else{
+    
+  }
   }
 }

@@ -42,12 +42,17 @@ void loop() {
   int PS4_Triangle=0;
   int PS4_R1=0;
   int PS4_L1=0;
+
+  /*int PS4_Circle=5;
+  int PS4_Triangle=5;
+  int PS4_R1=5;
+  int PS4_L1=5;*/
   
   //Serial.println("Start");
   // 受信処理を実行
   //receivePacket();
   if (PS4.isConnected()) {
-    //if (PS4.Cross()) Serial.println("Cross Button");
+    Serial.println("Conected");
     if (PS4.Circle()){
       Serial.println("Circle Button");
       PS4_Circle=1;
@@ -68,11 +73,12 @@ void loop() {
       PS4_L1=1;
       Serial.printf("%d\n", PS4_L1);
       };
-  }
+  
 
   // 送信処理を実行
   //sendPacket(PS4_Circle);
   sendPacket(PS4_Circle, PS4_Triangle, PS4_R1, PS4_L1);
+  }
 
   //delay(1000);  // 1秒の遅延
 }

@@ -43,7 +43,7 @@ uint8_t receivedLength;      // 受信データの長さを格納する変数*/
 uint32_t id;          // CAN IDを格納する変数
 uint16_t data[8]={0,0,0,0,0,0,0,0};      // 受信データを格納する配列（最大8バイト）
 uint16_t length=0;       // 受信データの長さを格納する変数
-  
+
 receivePacket(id, data, length);
 
   Serial.print("Received ID: ");
@@ -71,7 +71,7 @@ receivePacket(id, data, length);
       
       }
 
- //delay(1000);  // 1秒の遅延
+// delay(1000);  // 1秒の遅延
 }
 
 /*
