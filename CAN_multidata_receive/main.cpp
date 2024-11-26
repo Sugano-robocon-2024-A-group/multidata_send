@@ -5,6 +5,10 @@
 //CAN通信確立成功
 //数字を読むことに成功
 
+uint32_t id;          // CAN IDを格納する変数
+uint16_t data[8]={0,0,0,0,0,0,0,0};      // 受信データを格納する配列（最大8バイト）
+uint16_t length=0;       // 受信データの長さを格納する変数
+
 // setup関数: 初期設定を行う。CANバスの初期化と、送受信の設定を呼び出す
 void setup() {
   
@@ -40,18 +44,19 @@ void loop() {
 uint8_t receivedData[8]={0,0,0,0,0,0,0,0};     // 受信データを格納する配列
 uint8_t receivedLength;      // 受信データの長さを格納する変数*/
 
-uint32_t id;          // CAN IDを格納する変数
+/*uint32_t id;          // CAN IDを格納する変数
 uint16_t data[8]={0,0,0,0,0,0,0,0};      // 受信データを格納する配列（最大8バイト）
-uint16_t length=0;       // 受信データの長さを格納する変数
+uint16_t length=0;       // 受信データの長さを格納する変数*/
 
 receivePacket(id, data, length);
-
+/*
   Serial.print("Received ID: ");
   Serial.println(id);  // 10進数で表示
 
   Serial.print("Received length ");
-  Serial.println(length);  // 10進数で表示
-
+  Serial.println(length);  // 10進数で表示*/
+  int packetSize = CAN.parsePacket();
+if (packetSize) { 
   // CANメッセージを受信
     for (int i = 0; i < length; i++) {
       //Serial.print(data[i]);//⇒こっちで255って出てる
@@ -66,10 +71,14 @@ receivePacket(id, data, length);
 
     Serial.println();
 
-    if(data[0]==0){
-      //これでHIGHにする
-      
-      }
+  //  if(data[0]==0){
+      //これでHIGHにする   
+
+    for (int i = 0; i < 8; i++) {
+    data[i] = 0;
+    }
+}
+
 
 // delay(1000);  // 1秒の遅延
 }

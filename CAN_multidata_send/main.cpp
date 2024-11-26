@@ -1,19 +1,26 @@
+#include <CAN.h>
 #include <PS4Controller.h>
 #include <Arduino.h>
-#include <CAN.h>
 #include "tuushin.h"  // tuushin.hをインクルード
+
+int PS4_Circle=0;
+  int PS4_Triangle=0;
+  int PS4_R1=0;
+  int PS4_L1=0;
 
 
 // setup関数: 初期設定を行う。CANバスの初期化と、送受信の設定を呼び出す
 void setup() {
   
   Serial.begin(115200);  // シリアル通信開始
-  PS4.begin("1c:69:20:e6:20:d2");//ここにアドレス
   Serial.println("Ready.");
-  while (!Serial);  // シリアル接続待機
+  //while (!PS4.isConnected());
+ // while (!Serial);  // シリアル接続待機
 
- const int CAN_TX_PIN = 27;  // 送信ピン（GPIO27）
-const int CAN_RX_PIN = 26;  // 受信ピン（GPIO26）
+  Serial.println("test");
+  
+  const int CAN_TX_PIN = 27;  // 送信ピン（GPIO27）
+  const int CAN_RX_PIN = 26;  // 受信ピン（GPIO26）
 
   Serial.println("CAN Communication");
 
@@ -32,16 +39,19 @@ const int CAN_RX_PIN = 26;  // 受信ピン（GPIO26）
   // 受信と送信の初期化関数を呼び出し
   setupReceiver();
   setupSender();
+
+  PS4.begin("1c:69:20:e6:20:d2");//ここにアドレス
+
   Serial.println("Start");
 }
 
 // loop関数: 受信と送信を繰り返す
 void loop() {
-
-  int PS4_Circle=0;
-  int PS4_Triangle=0;
-  int PS4_R1=0;
-  int PS4_L1=0;
+  
+  PS4_Circle=0;
+  PS4_Triangle=0;
+  PS4_R1=0;
+  PS4_L1=0;
 
   /*int PS4_Circle=5;
   int PS4_Triangle=5;

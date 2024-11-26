@@ -93,12 +93,10 @@ void receivePacket(uint32_t &id, uint16_t *data, uint16_t &length) {
     
 
         
-      }
+      //}
       Serial.println();
     }
     Serial.println();
-  }else{
-    
   }
-  }
+}
 }
